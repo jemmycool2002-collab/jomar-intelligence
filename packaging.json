@@ -1,0 +1,21 @@
+{
+  "bottles": [
+    {"name": "Standard Flint 50ml", "cost": 3.50},
+    {"name": "Luxury Polished 50ml", "cost": 12.00},
+    {"name": "Tester Vial 5ml", "cost": 0.80}
+  ],
+  "caps": [
+    {"name": "Standard Plastic Cap", "cost": 0.50},
+    {"name": "Magnetic Zamac Cap (Gold)", "cost": 8.50},
+    {"name": "Magnetic Zamac Cap (Black)", "cost": 8.50}
+  ],
+  "pumps": [
+    {"name": "Invisible Tube Pump", "cost": 2.20},
+    {"name": "Standard Crimp Pump", "cost": 1.10}
+  ],
+  "extras": [
+    {"name": "JOMAR Velvet Box", "cost": 15.00},
+    {"name": "Standard Cardboard Box", "cost": 2.50},
+    {"name": "Label & Sticker", "cost": 1.00}
+  ]
+}
