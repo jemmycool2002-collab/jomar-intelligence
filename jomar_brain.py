@@ -1,10 +1,11 @@
 import os
 import json
+from datetime import datetime
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 
 # --- PASTE YOUR API KEY HERE ---
-os.environ["OPENAI_API_KEY"] = "openai API"
+os.environ["OPENAI_API_KEY"] = "sk-..."
 
 def search_database(query):
     """Manually searches the JOMAR memory file."""
@@ -35,16 +36,17 @@ def search_database(query):
         return f"Database Error: {e}"
 
 def run_jomar_expert(user_input, image_base64=None):
-    """
-    The Main Brain Function.
-    Now supports IMAGE INPUT (Vision).
-    """
+    """The Main Brain Function with Live Time Awareness."""
     # 1. RETRIEVE MEMORY
     context = search_database(user_input)
     
-    # 2. DEFINE PERSONALITY
+    # 2. GET LIVE TIME (The New Upgrade)
+    live_date = datetime.now().strftime("%A, %B %d, %Y")
+    
+    # 3. DEFINE PERSONALITY & INJECT TIME
     system_prompt = (
         "You are JOMAR, a Master Perfumer and Chemical Engineer.\n"
+        f"Today's Live Date: {live_date}\n"
         "Your Goal: Provide professional, safe, and cost-aware perfume advice.\n"
         "RULES:\n"
         "1. If an image is provided, ANALYZE it visually (color, turbidity, text).\n"
@@ -53,13 +55,12 @@ def run_jomar_expert(user_input, image_base64=None):
         f"### RETRIEVED DATA FROM JOMAR DATABASE:\n{context}"
     )
 
-    # 3. CONSTRUCT MESSAGE (Text + Optional Image)
+    # 4. CONSTRUCT MESSAGE
     llm = ChatOpenAI(model="gpt-4o", temperature=0)
     
     user_content = [{"type": "text", "text": user_input}]
     
     if image_base64:
-        # Add the image to the message payload
         user_content.append({
             "type": "image_url",
             "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}
