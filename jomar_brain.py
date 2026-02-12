@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
 
 # --- PASTE YOUR API KEY HERE ---
-os.environ["OPENAI_API_KEY"] = "sk-..."
+os.environ["OPENAI_API_KEY"] = "OPENAI_API_KEY"
 
 def search_database(query):
     """Manually searches the JOMAR memory file."""
@@ -73,3 +73,4 @@ def run_jomar_expert(user_input, image_base64=None):
     
     response = llm.invoke(messages)
     return response.content
+
