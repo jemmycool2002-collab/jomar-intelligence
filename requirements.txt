@@ -4,5 +4,3 @@ langchain
 langchain-openai
 pandas
 openpyxl
-chromadb
-tiktoken
